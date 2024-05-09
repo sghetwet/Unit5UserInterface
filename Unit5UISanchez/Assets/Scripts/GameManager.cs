@@ -15,10 +15,12 @@ public class GameManager : MonoBehaviour
     private int lives;
     private int score;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI pauseText;
     public bool isGameActive;
     public Button restartButton;
     public GameObject TitleScreen;
     private AudioSource Background;
+    public TextMeshProUGUI volumeText;
     bool gamePaused = false;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         PauseMenu();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale = 0.0f;
+            pauseText.gameObject.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Time.timeScale = 1.0f;
+            pauseText.gameObject.SetActive(false);
+        }
     }
 
     IEnumerator SpawnTarget()
@@ -73,6 +85,8 @@ public class GameManager : MonoBehaviour
         lives++;
         UpdateLives();
         Background.Play();
+        volumeText.gameObject.SetActive(false);
+
     }
     public void UpdateLives()
     {
