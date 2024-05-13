@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public GameObject TitleScreen;
     private AudioSource Background;
     public TextMeshProUGUI volumeText;
-    bool gamePaused = false;
     // Start is called before the first frame update
     void Start()
     {
